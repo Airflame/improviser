@@ -18,7 +18,10 @@ class Synth(object):
         self.instrument = "Piano"
 
     def set_length(self, length):
-        self.length = int(str(length))
+        try:
+            self.length = int(str(length))
+        except:
+            self.length = 30
         if self.length > 100:
             self.length = 100
         if self.length < 1:
@@ -26,28 +29,37 @@ class Synth(object):
 
     def set_meter(self, meter):
         self.meter = str(meter)
+        if self.meter not in ("4/4", "3/4"):
+            self.meter = "4/4"
 
     def set_scale(self, scale, tonic):
         self.scale = []
         scale = str(scale)
-        tonic = scales.KEYS.index(str(tonic))
+        tonic = str(tonic)
+        if tonic in scales.KEYS:
+            tonic = scales.KEYS.index(str(tonic))
+        else:
+            tonic = scales.KEYS.index("C")
         self.scale.append(scales.CHROMATIC[tonic])
         index = tonic
         selected_scale = ()
-        if scale == "Pentatonic":
-            selected_scale = scales.PENTATONIC
-        elif scale == "Blues":
+        if scale == "Blues":
             selected_scale = scales.BLUES
         elif scale == "Major":
             selected_scale = scales.MAJOR
         elif scale == "Minor":
             selected_scale = scales.MINOR
+        else:
+            selected_scale = scales.PENTATONIC
         for i in range(3 * len(selected_scale)):
             index = index + selected_scale[i % len(selected_scale)]
             self.scale.append(scales.CHROMATIC[index % len(scales.CHROMATIC)])
 
     def set_tempo(self, tempo):
-        self.tempo = int(str(tempo))
+        try:
+            self.tempo = int(str(tempo))
+        except:
+            self.tempo = 150
         if self.tempo < 30:
             self.tempo = 30
 
@@ -55,12 +67,9 @@ class Synth(object):
         self.instrument = str(instrument)
 
     def create(self, oid):
-        print(measures.MEASURES[self.meter])
         notes = self.improvise()
         filename = "wav/" + str(oid) + ".wav"
-        if self.instrument == "Piano":
-            pysynth_b.make_wav(notes, fn=filename, bpm=self.tempo)
-        elif self.instrument == "Plucked":
+        if self.instrument == "Plucked":
             pysynth_s.make_wav(notes, fn=filename, bpm=self.tempo)
         elif self.instrument == "Sawtooth":
             pysynth_c.make_wav(notes, fn=filename, bpm=self.tempo)
@@ -68,6 +77,8 @@ class Synth(object):
             pysynth_d.make_wav(notes, fn=filename, bpm=self.tempo)
         elif self.instrument == "Rhodes":
             pysynth_e.make_wav(notes, fn=filename, bpm=self.tempo)
+        else:
+            pysynth_b.make_wav(notes, fn=filename, bpm=self.tempo)
         return oid
 
     def improvise(self):

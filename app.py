@@ -36,7 +36,7 @@ def generate():
     else:
         oid = ip_set[request.remote_addr]
         while request.remote_addr in ip_set:
-            pass
+            return redirect('/', code=302)
     path = '/wav/' + str(oid) + '.wav'
     return redirect(path, code=302)
 
