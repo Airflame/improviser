@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Improviser</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://bootswatch.com/4/lux/bootstrap.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+    .form-control {
+        height: 110%;
+    }
+    </style>
+</head>
+
+<body>
+<div class="container" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;">
+<div class="row">
+<div class="col-md-4 offset-md-4">
+<br><br><br>
+<h1>Improviser</h1>
+<br><br><br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 offset-md-4">
+<form action="/generate">
+        <div class="form-group">
+            <label for="length">Set length:</label><br>
+            <input type="number" class="form-control" name="length" value="30">
+        </div>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 offset-md-4">
+        <div class="form-group">
+            <label for="meter">Set meter:</label><br>
+            <select class="form-control" id="meter" name="meter">
+            <option>4/4</option>
+            <option>3/4</option>
+            </select>
+        </div>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-2 offset-md-4">
+        <div class="form-group">
+            <label for="scale">Set scale:</label><br>
+            <select class="form-control" id="scale" name="scale">
+            <option>Pentatonic</option>
+            <option>Blues</option>
+            <option>Major</option>
+            <option>Minor</option>
+            </select>
+        </div>
+    <br>
+</div>
+<div class="col-md-2">
+        <div class="form-group">
+            <label for="tonic">Set tonic:</label><br>
+            <select class="form-control" id="tonic" name="tonic">
+            <option>C</option>
+            <option>D</option>
+            <option>D#</option>
+            <option>E</option>
+            <option>F</option>
+            <option>F#</option>
+            <option>G</option>
+            <option>G#</option>
+            <option>A</option>
+            <option>A#</option>
+            <option>B</option>
+            </select>
+        </div>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 offset-md-4">
+        <div class="form-group">
+            <label for="tempo">Set tempo:</label><br>
+            <input type="number" class="form-control" name="tempo" value="150">
+        </div>
+    <br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 offset-md-4">
+        <div class="form-group">
+            <label for="instrument">Set instrument:</label><br>
+            <select class="form-control" id="instrument" name="instrument">
+            <option>Piano</option>
+            <option>Plucked</option>
+            <option>Sawtooth</option>
+            <option>Square</option>
+            <option>Rhodes</option>
+            </select>
+        </div>
+    <br><br>
+</div>
+</div>
+<div class="row">
+<div class="col-md-4 offset-md-4">
+        <button type="submit" class="btn btn-primary">Generate</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
